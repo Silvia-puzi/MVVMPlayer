@@ -311,7 +311,17 @@ public class DetailViewModule implements View.OnClickListener, LyricView.PlayLis
             case R.id.detail_more:
                 showPlayList();
                 break;
-
+            case R.id.detail_back:
+                mDetailActivity.finish();
+                break;
+            case R.id.detail_share:
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.addCategory("android.intent.category.DEFAULT");
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, ""+audioItem.getArtist()+"唱的"+audioItem.getTitle()+"很好听哦，快去听听看吧，墙裂推荐~");
+                // 创建一个选择器
+                mDetailActivity.startActivity(Intent.createChooser(intent, "分享到"));
         }
  }
 
