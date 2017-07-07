@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:background="@drawable/base_titlebar_bg"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="10dp">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -36,14 +37,22 @@
 
     <ImageView
         android:id="@+id/notification_pre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_notification_pre" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/last" />
+
+    <ImageView
+        android:id="@+id/notification_play"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/play"
+        />
 
     <ImageView
         android:id="@+id/notification_next"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_marginLeft="10dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_notification_next" />
+        android:layout_height="40dp"
+        android:src="@drawable/next" />
 </LinearLayout>

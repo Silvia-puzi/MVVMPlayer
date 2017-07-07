@@ -43,6 +43,7 @@ public class MusicService extends Service {
     private static final int FROM_CONTENT = 7;
     private static final int FROM_PRE = 8;
     private static final int FROM_NEXT = 9;
+    private static final int FROM_PLAY=10;
     private static int play_mode;
     private SharedPreferences sp;
     private String mMp3Url;
@@ -79,6 +80,16 @@ public class MusicService extends Service {
                 break;
             case FROM_NEXT:
                 binder.playNext();
+                break;
+            case FROM_PLAY:
+                boolean playing = binder.isPlaying();
+                if (playing){
+                    binder.pause();
+                }else{
+                    binder.start();
+                }
+
+
                 break;
             default:
                 //TODO
@@ -163,7 +174,15 @@ public class MusicService extends Service {
             remoteViews.setTextViewText(R.id.notification_artist,audioItems.get(position).getArtist());
             remoteViews.setOnClickPendingIntent(R.id.notification_pre,getPrePendingIntent());
             remoteViews.setOnClickPendingIntent(R.id.notification_next,getNextPendingIntent());
+            remoteViews.setOnClickPendingIntent(R.id.notification_play,getPlayPendingIntent());
             return remoteViews;
+        }
+
+        private PendingIntent getPlayPendingIntent() {
+            Intent intent = new Intent(MusicService.this,MusicService.class);
+            intent.putExtra("from",FROM_PLAY);
+            PendingIntent pendingIntent  = PendingIntent.getService(MusicService.this,1,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            return pendingIntent;
         }
 
         //通知栏主体点击事件
@@ -180,7 +199,7 @@ public class MusicService extends Service {
         private PendingIntent getNextPendingIntent() {
             Intent intent = new Intent(MusicService.this,MusicService.class);
             intent.putExtra("from",FROM_NEXT);
-            PendingIntent pendingIntent  = PendingIntent.getService(MusicService.this,1,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent  = PendingIntent.getService(MusicService.this,2,intent,PendingIntent.FLAG_UPDATE_CURRENT);
             return pendingIntent;
         }
 
