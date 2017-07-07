@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_page"
+            android:icon="@drawable/music_player"
+            android:title="首页"/>
+        <item
+            android:id="@+id/nav_favorite"
+            android:icon="@drawable/music_player"
+            android:title="我喜欢"/>
+
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/music_player"
+            android:title="日夜间切换"/>
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/music_player"
+            android:title="退出登录"/>
+    </group>
+</menu>
